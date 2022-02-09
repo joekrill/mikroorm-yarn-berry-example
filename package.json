@@ -1,0 +1,12 @@
+{
+  "name": "@mikroorm-yarn-berry-example/root",
+  "version": "1.0.0",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "mikroorm-test": "yarn workspace @mikroorm-yarn-berry-example/server run mikro-orm"
+  },
+  "packageManager": "yarn@3.1.1"
+}

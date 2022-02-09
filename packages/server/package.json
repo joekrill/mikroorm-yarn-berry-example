@@ -1,0 +1,26 @@
+{
+  "name": "@mikroorm-yarn-berry-example/server",
+  "packageManager": "yarn@3.1.1",
+  "dependencies": {
+    "@mikro-orm/core": "^5.0.0",
+    "@mikro-orm/migrations": "^5.0.0",
+    "@mikro-orm/reflection": "^5.0.0",
+    "@mikro-orm/sqlite": "^5.0.0",
+    "ts-node": "^10.5.0",
+    "typescript": "^4.5.5"
+  },
+  "scripts": {
+    "migrate:up": "mikro-orm migration:up",
+    "migrate:create": "mikro-orm migration:create"
+  },
+  "mikro-orm": {
+    "useTsNode": true,
+    "configPaths": [
+      "./src/mikro-orm.config.ts",
+      "./build/mikro-orm.config.js"
+    ]
+  },
+  "devDependencies": {
+    "@mikro-orm/cli": "^5.0.0"
+  }
+}

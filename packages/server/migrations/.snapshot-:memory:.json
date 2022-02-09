@@ -1,0 +1,325 @@
+{
+  "namespaces": [],
+  "tables": [
+    {
+      "columns": {
+        "name": {
+          "name": "name",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        }
+      },
+      "name": "book_tag",
+      "indexes": [
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "name"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {}
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "created_at": {
+          "name": "created_at",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "mappedType": "datetime"
+        },
+        "updated_at": {
+          "name": "updated_at",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "length": 0,
+          "mappedType": "datetime"
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "email": {
+          "name": "email",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "age": {
+          "name": "age",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "integer"
+        },
+        "terms_accepted": {
+          "name": "terms_accepted",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "integer"
+        },
+        "identities": {
+          "name": "identities",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "born": {
+          "name": "born",
+          "type": "datetime",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "length": 0,
+          "mappedType": "datetime"
+        },
+        "favourite_book_id": {
+          "name": "favourite_book_id",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": true,
+          "mappedType": "text"
+        },
+        "version": {
+          "name": "version",
+          "type": "integer",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "default": "1",
+          "mappedType": "integer"
+        }
+      },
+      "name": "author",
+      "indexes": [
+        {
+          "columnNames": [
+            "favourite_book_id"
+          ],
+          "composite": false,
+          "keyName": "author_favourite_book_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "author_favourite_book_id_foreign": {
+          "constraintName": "author_favourite_book_id_foreign",
+          "columnNames": [
+            "favourite_book_id"
+          ],
+          "localTableName": "author",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "book",
+          "deleteRule": "set null",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "title": {
+          "name": "title",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "author_id": {
+          "name": "author_id",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        }
+      },
+      "name": "book",
+      "indexes": [
+        {
+          "columnNames": [
+            "author_id"
+          ],
+          "composite": false,
+          "keyName": "book_author_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "id"
+          ],
+          "composite": false,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "book_author_id_foreign": {
+          "constraintName": "book_author_id_foreign",
+          "columnNames": [
+            "author_id"
+          ],
+          "localTableName": "book",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "author",
+          "updateRule": "cascade"
+        }
+      }
+    },
+    {
+      "columns": {
+        "book_id": {
+          "name": "book_id",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        },
+        "book_tag_name": {
+          "name": "book_tag_name",
+          "type": "text",
+          "unsigned": false,
+          "autoincrement": false,
+          "primary": false,
+          "nullable": false,
+          "mappedType": "text"
+        }
+      },
+      "name": "book_tags",
+      "indexes": [
+        {
+          "columnNames": [
+            "book_id"
+          ],
+          "composite": false,
+          "keyName": "book_tags_book_id_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "columnNames": [
+            "book_tag_name"
+          ],
+          "composite": false,
+          "keyName": "book_tags_book_tag_name_index",
+          "primary": false,
+          "unique": false
+        },
+        {
+          "keyName": "primary",
+          "columnNames": [
+            "book_id",
+            "book_tag_name"
+          ],
+          "composite": true,
+          "primary": true,
+          "unique": true
+        }
+      ],
+      "checks": [],
+      "foreignKeys": {
+        "book_tags_book_id_foreign": {
+          "constraintName": "book_tags_book_id_foreign",
+          "columnNames": [
+            "book_id"
+          ],
+          "localTableName": "book_tags",
+          "referencedColumnNames": [
+            "id"
+          ],
+          "referencedTableName": "book",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        },
+        "book_tags_book_tag_name_foreign": {
+          "constraintName": "book_tags_book_tag_name_foreign",
+          "columnNames": [
+            "book_tag_name"
+          ],
+          "localTableName": "book_tags",
+          "referencedColumnNames": [
+            "name"
+          ],
+          "referencedTableName": "book_tag",
+          "deleteRule": "cascade",
+          "updateRule": "cascade"
+        }
+      }
+    }
+  ]
+}
