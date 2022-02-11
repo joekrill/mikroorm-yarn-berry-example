@@ -1,22 +1,26 @@
 {
-  "namespaces": [],
+  "namespaces": [
+    "public"
+  ],
+  "name": "public",
   "tables": [
     {
       "columns": {
         "name": {
           "name": "name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         }
       },
       "name": "book_tag",
+      "schema": "public",
       "indexes": [
         {
-          "keyName": "primary",
+          "keyName": "book_tag_pkey",
           "columnNames": [
             "name"
           ],
@@ -32,54 +36,54 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "created_at": {
           "name": "created_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         },
         "updated_at": {
           "name": "updated_at",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         },
         "name": {
           "name": "name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "email": {
           "name": "email",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "age": {
           "name": "age",
-          "type": "integer",
+          "type": "int",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
@@ -88,44 +92,44 @@
         },
         "terms_accepted": {
           "name": "terms_accepted",
-          "type": "integer",
+          "type": "boolean",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "integer"
+          "mappedType": "boolean"
         },
         "identities": {
           "name": "identities",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "born": {
           "name": "born",
-          "type": "datetime",
+          "type": "timestamptz(0)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "length": 0,
+          "length": 6,
           "mappedType": "datetime"
         },
         "favourite_book_id": {
           "name": "favourite_book_id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": true,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "version": {
           "name": "version",
-          "type": "integer",
+          "type": "int",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
@@ -135,18 +139,10 @@
         }
       },
       "name": "author",
+      "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "favourite_book_id"
-          ],
-          "composite": false,
-          "keyName": "author_favourite_book_id_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "primary",
+          "keyName": "author_pkey",
           "columnNames": [
             "id"
           ],
@@ -162,11 +158,11 @@
           "columnNames": [
             "favourite_book_id"
           ],
-          "localTableName": "author",
+          "localTableName": "public.author",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "book",
+          "referencedTableName": "public.book",
           "deleteRule": "set null",
           "updateRule": "cascade"
         }
@@ -176,45 +172,37 @@
       "columns": {
         "id": {
           "name": "id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "title": {
           "name": "title",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "author_id": {
           "name": "author_id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         }
       },
       "name": "book",
+      "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "author_id"
-          ],
-          "composite": false,
-          "keyName": "book_author_id_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "primary",
+          "keyName": "book_pkey",
           "columnNames": [
             "id"
           ],
@@ -230,11 +218,11 @@
           "columnNames": [
             "author_id"
           ],
-          "localTableName": "book",
+          "localTableName": "public.book",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "author",
+          "referencedTableName": "public.author",
           "updateRule": "cascade"
         }
       }
@@ -243,45 +231,28 @@
       "columns": {
         "book_id": {
           "name": "book_id",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         },
         "book_tag_name": {
           "name": "book_tag_name",
-          "type": "text",
+          "type": "varchar(255)",
           "unsigned": false,
           "autoincrement": false,
           "primary": false,
           "nullable": false,
-          "mappedType": "text"
+          "mappedType": "string"
         }
       },
       "name": "book_tags",
+      "schema": "public",
       "indexes": [
         {
-          "columnNames": [
-            "book_id"
-          ],
-          "composite": false,
-          "keyName": "book_tags_book_id_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "columnNames": [
-            "book_tag_name"
-          ],
-          "composite": false,
-          "keyName": "book_tags_book_tag_name_index",
-          "primary": false,
-          "unique": false
-        },
-        {
-          "keyName": "primary",
+          "keyName": "book_tags_pkey",
           "columnNames": [
             "book_id",
             "book_tag_name"
@@ -298,11 +269,11 @@
           "columnNames": [
             "book_id"
           ],
-          "localTableName": "book_tags",
+          "localTableName": "public.book_tags",
           "referencedColumnNames": [
             "id"
           ],
-          "referencedTableName": "book",
+          "referencedTableName": "public.book",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         },
@@ -311,11 +282,11 @@
           "columnNames": [
             "book_tag_name"
           ],
-          "localTableName": "book_tags",
+          "localTableName": "public.book_tags",
           "referencedColumnNames": [
             "name"
           ],
-          "referencedTableName": "book_tag",
+          "referencedTableName": "public.book_tag",
           "deleteRule": "cascade",
           "updateRule": "cascade"
         }

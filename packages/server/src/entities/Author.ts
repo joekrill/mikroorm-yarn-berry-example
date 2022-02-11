@@ -2,14 +2,34 @@ import {
   Entity,
   PrimaryKey,
   Property,
-  ManyToMany,
   OneToMany,
   Collection,
   ManyToOne,
+  Filter,
 } from "@mikro-orm/core";
+import { SqlEntityManager } from "@mikro-orm/postgresql";
 import { Book } from "./Book";
 
 @Entity()
+@Filter({
+  name: "rawtest",
+  args: false,
+  cond: async (_args, _type, em: SqlEntityManager) => ({
+    createdAt: { $lte: em.raw("current_timestamp") },
+  }),
+})
+@Filter({
+  name: "qbtest",
+  args: false,
+  cond: async (_args, _type, em: SqlEntityManager) => {
+    const qb = em.createQueryBuilder(Author, "test0");
+    qb.select("id").where({ name: "test" });
+
+    return {
+      id: { $in: qb.getKnexQuery() },
+    };
+  },
+})
 export class Author {
   @PrimaryKey()
   id!: string;

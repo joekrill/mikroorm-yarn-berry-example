@@ -36,6 +36,7 @@
     "skipLibCheck": true
   },
   "include": ["src"],
+  "exclude": ["**/*.test.ts"],
   "ts-node": {
     "files": true
   }
